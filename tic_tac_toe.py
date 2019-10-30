@@ -1,20 +1,20 @@
 def display_board(block):
-    print("    |     |   ")
-    print(block[7]+"|"+block[8]+"|"+block[9])
+    print("    |    |    ")
+    print(block[7]+"   |   "+block[8]+"   |   "+block[9])
     print("    |     |    ")
     print("_______________")
     print("    |     |    ")
-    print(block[4]+"|"+block[5]+"|"+block[6])
+    print(block[4]+"  |   "+block[5]+"  |  "+block[6])
     print("    |     |    ")
     print("_______________")
     print("    |     |    ")
-    print(block[1]+"|"+block[2]+"|"+block[3])
+    print(block[1]+"   |   "+block[2]+"   |   "+block[3])
     print("    |     |    ")
  
 block = ["-"," "," "," "," "," "," "," "," "," "]
 
 select_menu = 0
-select_player = input("player 1: what do you want to be, type X or O")
+select_player = input("player 1: what do you want to be, type X or O   ")
 while select_menu == 0:
     if select_player == "0":
         print("please use O, not 0")
@@ -37,29 +37,26 @@ turn_order=1
 while game_over == 0:
     if turn_order == 1:
         player1_entry = int(input("player 1: where will you go?  "))
-        entry_slice = slice(player1_entry)
-        if block[entry_slice] != " ":
+        if block[player1_entry] != " ":
             print("space is not vacant!  ")
-        elif block[entry_slice] == player1_piece:
+        elif block[player1_entry] == player2_piece:
             print("player 2's piece should be different than yours!  ")
         else:
-            block.insert(player1_entry, player1_piece)
-            block.remove(player1_entry+1)
+            block[player1_entry] = player1_piece
+            print(len(block))
             turn_order=0
             display_board(block)
     elif turn_order == 0:
         player2_entry = int(input("player 2: where will you go?  "))
-        entry_slice = slice(player2_entry)
-        if block[entry_slice] != " ":
+        if block[player2_entry] != " ":
             print("space is not vacant!")
-        elif block[entry_slice] == player1_piece:
+        elif block[player2_entry] == player1_piece:
             print("player 1's piece should be different than yours!")
         else:
-            block.insert(player2_entry, player2_piece)
-            block.remove(player2_entry+1)
+            block[player2_entry] = player2_piece
             turn_order=1
             display_board(block)
-    elif all(block) != " ":
+    elif block[:!= " ":
         game_over == 1
-        
+
 print("game over!")
