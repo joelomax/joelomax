@@ -72,8 +72,14 @@ def endGame():
         return True
 
 def decideWinner():
+    for item in winstates:
+		line = ''
+		for i in item:
+			line += block[i]
+			if line[:] == 'O':
 
-
+			win = 0
+			return win
 turn_order = 0
 while True:
     turn_order = 1 - turn_order  # Nice!
@@ -84,6 +90,7 @@ while True:
         block[int(player_entry)] = player_pieces['player' + str(turn_order + 1)]
         print(len(block))
         display_board(block)
+
 
 decideWinner()
 print("game over!")
