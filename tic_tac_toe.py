@@ -64,8 +64,9 @@ def endGame():
     if " " not in block:
         return True
 
-turn_order = 1
+turn_order = 0
 while True:
+    turn_order = 1 - turn_order #Nice!
     if endGame():
         break
     if turn_order == 1:
@@ -73,14 +74,12 @@ while True:
         if (isValidMove(player1_entry)):
             block[int(player1_entry)] = player1_piece
             print(len(block))
-            turn_order = 0
             display_board(block)
     elif turn_order == 0:
         player2_entry = getUserInput(2)
         if (isValidMove(player2_entry)):
             block[int(player2_entry)] = player2_piece
             print(len(block))
-            turn_order = 1
             display_board(block)
 
 print("game over!")
