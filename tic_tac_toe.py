@@ -60,12 +60,13 @@ def isValidMove(player_entry):
     else:
         return True
 
-
-game_over = 0
-turn_order = 1
-while game_over == 0:
+def endGame():
     if " " not in block:
-        game_over == 1
+        return True
+
+turn_order = 1
+while True:
+    if endGame():
         break
     if turn_order == 1:
         player1_entry = getUserInput(1)
