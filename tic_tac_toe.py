@@ -13,6 +13,10 @@ def display_board(block):
 
 
 block = ["-", " ", " ", " ", " ", " ", " ", " ", " ", " "]
+player_pieces = {
+    'player1': '',
+    'player2': ''
+}
 
 select_menu = 0
 while select_menu == 0:
@@ -20,13 +24,13 @@ while select_menu == 0:
     if select_player == "0":
         print("please use O, not 0")
     elif select_player == "O":
-        player1_piece = "O"
-        player2_piece = "X"
+        player_pieces['player1'] = "O"
+        player_pieces['player2'] = "X"
         select_menu = 1
         break
     elif select_player == "X" or select_player == "x":
-        player1_piece = "X"
-        player2_piece = "O"
+        player_pieces['player1'] = "X"
+        player_pieces['player2'] = "O"
         select_menu = 1
         break
     else:
@@ -54,9 +58,6 @@ def isValidMove(player_entry):
     if block[int(player_entry)] != " ":
         print("space is not vacant!  ")
         return False
-    elif block[int(player_entry)] == player2_piece:
-        print("player 2's piece should be different than yours!  ")
-        return False
     else:
         return True
 
@@ -69,17 +70,10 @@ while True:
     turn_order = 1 - turn_order #Nice!
     if endGame():
         break
-    if turn_order == 1:
-        player1_entry = getUserInput(1)
-        if (isValidMove(player1_entry)):
-            block[int(player1_entry)] = player1_piece
-            print(len(block))
-            display_board(block)
-    elif turn_order == 0:
-        player2_entry = getUserInput(2)
-        if (isValidMove(player2_entry)):
-            block[int(player2_entry)] = player2_piece
-            print(len(block))
-            display_board(block)
+    player_entry = getUserInput(turn_order)
+    if (isValidMove(player_entry)):
+        block[int(player_entry)] = player_pieces['player' + turn_order]
+        print(len(block))
+        display_board(block)
 
 print("game over!")
