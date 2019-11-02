@@ -50,6 +50,17 @@ def getUserInput(playerNumber):
 
     return player1_entry
 
+def isValidMove(player_entry):
+    if block[int(player_entry)] != " ":
+        print("space is not vacant!  ")
+        return False
+    elif block[int(player_entry)] == player2_piece:
+        print("player 2's piece should be different than yours!  ")
+        return False
+    else:
+        return True
+
+
 game_over = 0
 turn_order = 1
 while game_over == 0:
@@ -58,22 +69,14 @@ while game_over == 0:
         break
     if turn_order == 1:
         player1_entry = getUserInput(1)
-        if block[int(player1_entry)] != " ":
-            print("space is not vacant!  ")
-        elif block[int(player1_entry)] == player2_piece:
-            print("player 2's piece should be different than yours!  ")
-        else:
+        if (isValidMove(player1_entry)):
             block[int(player1_entry)] = player1_piece
             print(len(block))
             turn_order = 0
             display_board(block)
     elif turn_order == 0:
         player2_entry = getUserInput(2)
-        if block[int(player2_entry)] != " ":
-            print("space is not vacant!  ")
-        elif block[int(player2_entry)] == player1_piece:
-            print("player 2's piece should be different than yours!  ")
-        else:
+        if (isValidMove(player2_entry)):
             block[int(player2_entry)] = player2_piece
             print(len(block))
             turn_order = 1
